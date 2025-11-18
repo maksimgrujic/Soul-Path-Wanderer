@@ -14,8 +14,15 @@ if (moving) {
 }
 
 // Collision movement
-if (!place_meeting(x + move_x * move_speed, y, obj_wall)) x += move_x * move_speed;
-if (!place_meeting(x, y + move_y * move_speed, obj_wall)) y += move_y * move_speed;
+if (!place_meeting(x + move_x * move_speed, y, obj_wall) 
+&& !place_meeting(x + move_x * move_speed, y, obj_enemy)) {
+    x += move_x * move_speed;
+}
+
+if (!place_meeting(x, y + move_y * move_speed, obj_wall)
+&& !place_meeting(x, y + move_y * move_speed, obj_enemy)) {
+    y += move_y * move_speed;
+}
 
 // Determine facing
 if (moving) {
